@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Bounce, toast } from "react-toastify"
 import { useAuth } from "../store/auth"
+import { Tooltip } from "./ToolTip"
 
 export const ContactPage = ()=>{
     const [contect,setContect] = useState({
@@ -59,7 +60,7 @@ export const ContactPage = ()=>{
 
     }
 
-    return(
+    return(<>
     <form onSubmit={handleFormSubmit}>
     <div className="contact-container">
 <div className="card-conatct ">
@@ -79,5 +80,7 @@ export const ContactPage = ()=>{
     </div>
 </div>
     </div>
-    </form>)
+    </form>
+    <Tooltip/>
+    </>)
 }
