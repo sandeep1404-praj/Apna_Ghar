@@ -8,6 +8,7 @@
 }
 .container{
   max-width: 110rem;
+  padding: 0;
 }
 
 nav{
@@ -53,6 +54,7 @@ nav{
 /* footer css */
 .footer {
   background-color: #000;
+  margin-top: 15px;
   color: white;
   padding: 30px 50px;
   display: flex;
@@ -889,5 +891,101 @@ button:disabled {
   to {
     left: calc(0% - 20px);
     transform: rotate(0deg);
+  }
+}
+
+
+/* Navbar styling */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 6rem;
+  width: 100%;
+  background-color: #FFFFFF;
+  box-shadow: 0.2px 0.1px 19px;
+  padding: 0 1.5rem;
+}
+
+.left-nav img {
+  height: 6rem;
+  width: 9rem;
+  margin-left: 2rem;
+}
+
+/* Desktop Navigation */
+.right-nav {
+  margin-right: 15px;
+}
+
+.nav-containt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.nav-containt li {
+  list-style: none;
+}
+
+.nav-containt li a {
+  text-decoration: none;
+  color: #666666;
+  font-size: 18px;
+}
+
+.nav-containt li a span {
+  background-color: #000000;
+  padding: 5px 8px;
+  border-radius: 5px;
+  color: #CCCCCC;
+}
+
+/* Mobile Menu (Hidden by Default) */
+.menu-btn {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .main-about{
+    height: 15rem;
+  }
+ 
+  .menu-btn {
+    display: block;
+  }
+  nav{
+    width: 100%;
+  }
+  .container{
+    padding: 0;
+  }
+  .sign-left img{
+    display: none;
+  }
+  .nav-containt {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 6rem;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 1rem 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  .card-conatct {
+    width: 100%;
+    height: auto;
+  }
+  .nav-containt.active {
+    display: flex;
+    background-color: white;
+    color: black;
+    z-index: 1;
   }
 }

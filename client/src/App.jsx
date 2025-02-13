@@ -11,11 +11,13 @@ import './App.css'
 import { LogoutPage } from './pages/LogoutPage'
 import { PropertyEdit } from './pages/PropertyEdit'
 import AddProperty from './pages/AddProperty'
+import { ErrorPage } from './components/Layout/Error'
 const App = ()=>{
   const router = createBrowserRouter([
     {
       path:'/',
       element:<AppLaout/>,
+      errorElement:<ErrorPage/>,
       children:[
         {
           path:'/',
@@ -56,7 +58,8 @@ const App = ()=>{
         {
           path:'/signup',
           element:<SignUpPage/>
-        }
+        },
+        
       ]
     }
   ])

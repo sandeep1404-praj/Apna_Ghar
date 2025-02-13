@@ -23,7 +23,7 @@ export const RoomPage = () => {
   const saveProperty = (property) => {
     // Check if already saved
     if (savedProperties.some((p) => p._id === property._id)) {
-      alert("This property is already saved.");
+      toast.warn("This property is already saved.");
       return;
     }
 
@@ -31,7 +31,7 @@ export const RoomPage = () => {
 
     localStorage.setItem("savedProperties", JSON.stringify(updatedProperties));
     setSavedProperties(updatedProperties);
-    alert("Property saved!");
+    toast.success("Property saved!");
   };
 
   // Handle message input change

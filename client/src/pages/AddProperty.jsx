@@ -80,7 +80,8 @@ const AddProperty = () => {
           <option value="">Select Property Type</option>
           <option value="Flat">Flat</option>
           <option value="House">House</option>
-          <option value="Villa">Villa</option>
+          <option value="Villa">PG</option>
+          <option value="Villa">Other</option>
         </select>
         <input type="text" name="images" placeholder="Image URL" value={formData.images} onChange={handleChange} required />
         <button type="submit" disabled={loading}>{loading ? "Adding..." : "Add Property"}</button>

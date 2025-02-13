@@ -13,8 +13,6 @@ export const AuthProvider = ({children})=>{
      }
      //! Logout Function
      let isLogin = !! token
-     console.log(isLogin);
-     
      const Logout = ()=>{
         setToken("");
         localStorage.removeItem("Token")
@@ -28,10 +26,9 @@ export const AuthProvider = ({children})=>{
             setIsLodind(true)
             if(response.ok){
                 const data = await response.json()
-                console.log("User Data ",data.userData);
+            
                 setUser(data.userData)
-                console.log(user);
-                
+              
                 setIsLodind(false)
             }
         } catch (error) {
@@ -45,7 +42,6 @@ export const AuthProvider = ({children})=>{
         
         if(response.ok){
             const data = await response.json();
-            console.log(data);
             setRoom(data)
         }
     }

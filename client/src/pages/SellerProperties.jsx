@@ -50,7 +50,7 @@ export const SellerProperties = ({ sellerId }) => {
         }
 
         const response = await fetch(`http://localhost:3000/api/property/seller/${sellerId}`);
-        console.log(response);
+  
         
         if (!response.ok) {
           throw new Error("Failed to fetch properties");

@@ -2,7 +2,6 @@ import express from 'express'
 import { authrouter } from './router/auth-router.js';
 import { connectDb } from './utility/db.js';
 import { sellerrouter } from './router/seller-route.js';
-import { buyerrouter } from './router/buyer-router.js';
 import { propertyrouter } from './router/property-router.js';
 import cors from 'cors'
 import { contactRouter } from './router/contact-router.js';
@@ -22,7 +21,6 @@ app.use("/api/auth", authrouter);
 app.use("/api/user", userRouters);
 app.use("/api/form",contactRouter)
 app.use("/api/seller", sellerrouter);
-app.use("/api/buyer", buyerrouter);
 app.use('/api/property',propertyrouter)
 
 connectDb().then(()=>{

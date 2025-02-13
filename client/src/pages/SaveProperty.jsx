@@ -3,37 +3,19 @@ import { toast } from "react-toastify";
 
 const SavedProperties = () => {
   const [savedProperties, setSavedProperties] = useState([]);
-    const handleDelete = async (propertyId) => {
-        console.log(propertyId);
-            if (!propertyId) {
-                
-              toast.error("Invalid property ID");
-              return;
-            }
-          
-            const confirmDelete = window.confirm("Are you sure you want to delete this property?");
-            if (!confirmDelete) return;
-          
-            try {
-              const response = await fetch(`http://localhost:3000/api/buyer/remove-property/${propertyId}`, {
-                method: "DELETE",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              });
-          
-              if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || "Failed to delete property");
-              }
-          
-              toast.success("Property deleted successfully");
-              setSavedProperties((prev) => prev.filter((savedProperties) => savedProperties._id !== propertyId));
-            } catch (error) {
-              console.error("Error deleting property:", error);
-              toast.error(error.message);
-            }
-          };
+  const removeSavedProperty = (propertyId) => {
+    // Filter out the property to be removed
+    const updatedProperties = savedProperties.filter(property => property._id !== propertyId);
+  
+    // Update localStorage
+    localStorage.setItem("savedProperties", JSON.stringify(updatedProperties));
+  
+    // Update state
+    setSavedProperties(updatedProperties);
+  
+    toast.success("Property removed!");
+  };
+  
   useEffect(() => {
     const storedProperties = JSON.parse(localStorage.getItem("savedProperties")) || [];
     setSavedProperties(storedProperties);
@@ -53,7 +35,7 @@ const SavedProperties = () => {
             <p><strong>Price:</strong> ₹{property.price}</p>
             <p><strong>Description:</strong> {property.description}</p>
             <p><strong>PropertyType:</strong> {property.propertyType}</p>
-            <button onClick={()=>handleDelete(property._id)}>Remove</button>
+            <button onClick={() => removeSavedProperty(property._id)}>Remove</button>
           </div>
         ))
       )}
