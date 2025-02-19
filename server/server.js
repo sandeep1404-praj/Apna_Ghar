@@ -10,8 +10,12 @@ import { userRouters } from './router/userRoute.js';
 const app = express()
 app.use(express.urlencoded({ extended: true })); 
 const PORT = 3000;  
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://gharapna.netlify.app"
+  ]
 const corsOptions = {
-    origin: "http://localhost:5173",
+    origin: allowedOrigins,
     method:"GET, POST, PUT, PATCH, DELETE,HEAD",
     CredentialS:true,
   }
