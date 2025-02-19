@@ -84,7 +84,7 @@ Apna_Ghar/
 ```
 
 ## UI Screenshot
-![Apna Ghar UI]([screenshot.png](https://github.com/sandeep1404-praj/Apna_Ghar/blob/main/Screenshot%202025-02-19%20230013.png))
+![Apna Ghar UI](https://github.com/sandeep1404-praj/Apna_Ghar/blob/main/Screenshot%202025-02-19%20230013.png)
 
 ## Contributing
 Feel free to contribute! Fork the repo and submit a pull request.
