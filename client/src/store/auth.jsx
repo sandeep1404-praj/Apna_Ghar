@@ -5,7 +5,7 @@ export const AuthProvider = ({children})=>{
      const [token,setToken] = useState(localStorage.getItem("Token"))
      const[isLoadind,setIsLodind] = useState(true)
      const [user,setUser] = useState("")
-     const [room,setRoom] = useState({})
+     const [room,setRoom] = useState([])
      const AuthorizationToken = `Bearer ${token}`
      const storeTokenInLS = (serverToken)=>{
         setToken(serverToken)

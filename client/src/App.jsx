@@ -28,7 +28,7 @@ const App = ()=>{
           element:<AboutPage/>
         },
         {
-          path:'room',
+          path:'/room',
           element:<RoomPage/>
         },
         {
