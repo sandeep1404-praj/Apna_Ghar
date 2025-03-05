@@ -29,7 +29,7 @@ export const ContactPage = ()=>{
     const handleFormSubmit = async(e) =>{
         e.preventDefault()
         try {
-            const response = await fetch("http://localhost:3000/api/form/contact",{
+            const response = await fetch("https://apna-ghar-2.onrender.com/api/form/contact",{
                 method:"POST",
                 headers:{"Content-Type":"application/json"},
                 body:JSON.stringify(contect)

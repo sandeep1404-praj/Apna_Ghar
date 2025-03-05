@@ -19,7 +19,7 @@ export const AuthProvider = ({children})=>{
      }
      const userAuthentication = async ()=>{
         try {
-            const response = await fetch("http://localhost:3000/api/auth/user",{
+            const response = await fetch("https://apna-ghar-2.onrender.com/api/auth/user",{
                 method:"GET",
                 headers:{Authorization:AuthorizationToken}
             })
@@ -36,7 +36,7 @@ export const AuthProvider = ({children})=>{
         }
     }
     const propertyData = async()=>{
-        const response  = await fetch("http://localhost:3000/api/property/all",{
+        const response  = await fetch("https://apna-ghar-2.onrender.com/api/property/all",{
             method:"GET",
         })
         

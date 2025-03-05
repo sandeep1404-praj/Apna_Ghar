@@ -20,7 +20,7 @@ export const SellerProperties = ({ sellerId }) => {
         if (!confirmDelete) return;
       
         try {
-          const response = await fetch(`http://localhost:3000/api/property/remove-property/${propertyId}`, {
+          const response = await fetch(`https://apna-ghar-2.onrender.com/api/property/remove-property/${propertyId}`, {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export const SellerProperties = ({ sellerId }) => {
           return;
         }
 
-        const response = await fetch(`http://localhost:3000/api/property/seller/${sellerId}`);
+        const response = await fetch(`https://apna-ghar-2.onrender.com/api/property/seller/${sellerId}`);
   
         
         if (!response.ok) {

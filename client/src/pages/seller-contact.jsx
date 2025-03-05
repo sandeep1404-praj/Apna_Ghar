@@ -10,7 +10,7 @@ export const BuyerRequests = () => {
   const [isPending, startTransition] = useTransition();
   const handleMarkAsContacted = async (requestId) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/seller/remove-buyer-request/${requestId}`, {
+      const response = await fetch(`https://apna-ghar-2.onrender.com/api/seller/remove-buyer-request/${requestId}`, {
         method: "DELETE",
       });
 
@@ -28,7 +28,7 @@ export const BuyerRequests = () => {
   useEffect(() => {
     const fetchBuyerRequests = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/seller/buyer-requests/${user._id}`);
+        const response = await fetch(`https://apna-ghar-2.onrender.com/api/seller/buyer-requests/${user._id}`);
         const data = await response.json();
         if (response.ok) {
           setRequests(data);

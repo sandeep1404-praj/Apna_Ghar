@@ -9,6 +9,7 @@ export const RoomPage = () => {
   const [activeProperty, setActiveProperty] = useState(null); 
   const [messages, setMessages] = useState({}); 
   const [search,setSearch] = useState("")
+  const [loading, setLoading] = useState(true);
 
   // State for saved properties
   const [savedProperties, setSavedProperties] = useState([]);
@@ -17,8 +18,10 @@ export const RoomPage = () => {
   useEffect(() => {
     const storedProperties = JSON.parse(localStorage.getItem("savedProperties")) || [];
     setSavedProperties(storedProperties);
+    const timer = setTimeout(() => setLoading(false), 3000);  // Simulate loading for 3 seconds
+    return () => clearTimeout(timer);
   }, []);
-
+  if (loading) return <Loader />;
   // Save Property Function
   const saveProperty = (property) => {
     // Check if already saved
@@ -52,7 +55,7 @@ export const RoomPage = () => {
     const message = messages[propertyId] || "I am interested in this property. Please contact me.";
 
     try {
-      const response = await fetch("http://localhost:3000/api/property/contact-seller", {
+      const response = await fetch("https://apna-ghar-2.onrender.com/api/property/contact-seller", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

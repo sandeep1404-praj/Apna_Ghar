@@ -26,7 +26,7 @@ export const SignUpPage = () => {
     e.preventDefault();
     console.log(user);
     try {
-        const response = await fetch("http://localhost:3000/api/auth/signup",
+        const response = await fetch("https://apna-ghar-2.onrender.com/api/auth/signup",
             {
                 method:"POST",
                 headers:{"Content-Type":"application/json"},

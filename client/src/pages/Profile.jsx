@@ -25,7 +25,7 @@ export const Profile = () => {
     try {
         const id = params.id || user._id; // Use logged-in user ID if no params.id
         
-        const response = await fetch(`http://localhost:3000/api/user/${id}`,{
+        const response = await fetch(`https://apna-ghar-2.onrender.com/api/user/${id}`,{
             method:"GET"
         });
         const data = await response.json();
@@ -55,7 +55,7 @@ export const Profile = () => {
             console.log("User Data before update:", userData); // Debugging
             console.log(user.profilePicture);
             
-            const response = await fetch(`http://localhost:3000/api/user/updateProfile`, {
+            const response = await fetch(`https://apna-ghar-2.onrender.com/api/user/updateProfile`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

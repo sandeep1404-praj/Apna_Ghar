@@ -15,7 +15,7 @@ export const PropertyEdit = () => {
 
   // Fetch Property Details
   useEffect(() => {
-    fetch(`http://localhost:3000/api/property/${propertyId}`)
+    fetch(`https://apna-ghar-2.onrender.com/api/property/${propertyId}`)
       .then((res) => res.json())
       .then((data) => setProperty(data))
       .catch((err) => console.error("Error fetching property:", err));
@@ -33,7 +33,7 @@ export const PropertyEdit = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:3000/api/property/${propertyId}`, {
+      const response = await fetch(`https://apna-ghar-2.onrender.com/api/property/${propertyId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
