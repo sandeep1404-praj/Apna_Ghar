@@ -70,7 +70,12 @@ export const SellerProperties = ({ sellerId }) => {
 
   if (loading) return  <Loader />
   if (error) return <p>Error: {error}</p>;
-  if (properties.length === 0) return <p>No properties found.</p>;
+  if (properties.length === 0) return <div>
+    No properties found.
+    <div className="addproperty" >
+      <NavLink className="plus-button" to='/add-property'>+</NavLink>
+    </div>
+    </div>;
     if (isPending) return <Loader />;
 
   return (<>
