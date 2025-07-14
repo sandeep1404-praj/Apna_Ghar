@@ -43,6 +43,7 @@ export const SellerProperties = ({ sellerId }) => {
 
   useEffect(() => {
     const fetchSellerProperties = async () => {
+      setLoading(true);
       try {
         if (!sellerId) {
           setError("Seller ID is missing!");
@@ -79,34 +80,32 @@ export const SellerProperties = ({ sellerId }) => {
     if (isPending) return <Loader />;
 
   return (<>
-  <h1 style={{fontSize:"25px",fontWeight:"700",textAlign:"center"}}>Your Property</h1>
-    <ul className="property-list-pro">
+  <h1 style={{fontSize:"25px",fontWeight:"700",textAlign:"center",marginBottom:"1.5rem"}}>Your Property</h1>
+    <ul className="seller-property-list">
       {properties.map((property, index) => {
         const { title, description, location, price, propertyType, available, images, _id,propertyId} = property;
 
-        return (<>
-            <li key={index} className="property-card">
-            <img src={images[0]} alt={title} className="property-img" />
-            <h2>{title}</h2>
-            <p><strong>Location:</strong> {location}</p>
-            <p><strong>Price:</strong> ₹{price}</p>
-            <p><strong>Type:</strong> {propertyType}</p>
-            <p><strong>Available: </strong>{available ? "Available" : "Not Available"}</p>
-            <button className="contact-btn" style={{margin:"5px 5px",padding:"11px 19px"}} onClick={() => navigate(`/edit-property/${_id}`)}> Edit</button>
-            <button className="contact-btn" style={{ margin: "5px 5px" }} onClick={() => handleDelete(_id)}>Delete</button>
-
-          </li>
-          
-        </>
+        return (
+            <li key={index} className="seller-property-card fade-in-up" style={{animationDelay: `${index * 0.05}s`}}>
+              <img src={images[0]} alt={title} className="seller-property-img" />
+              <div className="seller-property-content">
+                <h2>{title}</h2>
+                <p><strong>Location:</strong> {location}</p>
+                <p><strong>Price:</strong> ₹{price}</p>
+                <p><strong>Type:</strong> {propertyType}</p>
+                <p><strong>Available: </strong>{available ? "Available" : "Not Available"}</p>
+                <div className="seller-property-actions">
+                  <button className="modern-btn" onClick={() => navigate(`/edit-property/${_id}`)}>Edit</button>
+                  <button className="modern-btn delete" onClick={() => handleDelete(_id)}>Delete</button>
+                </div>
+              </div>
+            </li>
         );
-        
       })}
-    <div className="addproperty" >
-      <NavLink className="plus-button" to='/add-property'>+</NavLink>
-    </div>
+      <div className="addproperty">
+        <NavLink className="plus-button" to='/add-property'>+</NavLink>
+      </div>
     </ul>
-    
-  
   </>
   );
 };

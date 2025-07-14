@@ -6,6 +6,8 @@ import { propertyrouter } from './router/property-router.js';
 import cors from 'cors'
 import { contactRouter } from './router/contact-router.js';
 import { userRouters } from './router/userRoute.js';
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express()
 app.use(express.urlencoded({ extended: true })); 

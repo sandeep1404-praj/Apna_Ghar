@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Bounce, toast } from "react-toastify"
 import { useAuth } from "../store/auth"
 import { Tooltip } from "./ToolTip"
+import { Loader } from "../components/Layout/Loader"
 
 export const ContactPage = ()=>{
     const [contect,setContect] = useState({
@@ -10,24 +11,23 @@ export const ContactPage = ()=>{
         message:"",
     })
     const [userData, setUserData] = useState(true)
-
+    const [loading, setLoading] = useState(false)
     const {user}= useAuth()
     if(userData && user){
         setContect({
             fullName:user.fullName,
             email:user.email,
-            message:""
+            message:"",
         })
         setUserData(false)
     }
     const handalInput = (e)=>{
         const {name,value}= e.target;
         setContect((prev) =>({...prev,[name]:value}))
-    
-    
     }
     const handleFormSubmit = async(e) =>{
         e.preventDefault()
+        setLoading(true)
         try {
             const response = await fetch("https://apna-ghar-2.onrender.com/api/form/contact",{
                 method:"POST",
@@ -52,14 +52,13 @@ export const ContactPage = ()=>{
             }else{
                 toast.error("Messagenot send")
             }
-
         } catch (error) {
             console.log("contact error",error);
-            
+        } finally {
+            setLoading(false)
         }
-
     }
-
+    if (loading) return <Loader />
     return(<>
     <form onSubmit={handleFormSubmit}>
     <div className="contact-container">

@@ -12,43 +12,45 @@ export const Profile = () => {
     const params = useParams();
     const [isPending, startTransition] = useTransition();
     const [userData, setUserData] = useState({
-        id: user._id || "", 
-        name: user.fullName || "",
-        email: user.email || "",
-        role: user.userType || "",
-        profilePicture: user.profilePicture || "", 
-        properties: user.properties || [] // Ensure properties array exists
+        id: user?._id || "", 
+        name: user?.fullName || "",
+        email: user?.email || "",
+        role: user?.userType || "",
+        profilePicture: user?.profilePicture || "", 
+        properties: user?.properties || []
     });
+    const [loading, setLoading] = useState(true);
  
    // Fetch updated user data
  const fetchUser = async () => {
+    setLoading(true);
     try {
-        const id = params.id || user._id; // Use logged-in user ID if no params.id
-        
+        const id = params.id || user._id;
         const response = await fetch(`https://apna-ghar-2.onrender.com/api/user/${id}`,{
             method:"GET"
         });
         const data = await response.json();
-        
-        
         if (response.ok) {
-            setUserData(data); // Update user data
+            setUserData(data);
         } else {
             console.error("Error fetching user data:", data.message);
             console.log(data);
-            
         }
     } catch (error) {
         console.error("Error:", error);
+    } finally {
+        setLoading(false);
     }
 };
 
-  
-    useEffect(() => {
-        
-        if (user?._id) fetchUser();
-    }, [user?._id]);
-  if (isPending) return <Loader />;
+ useEffect(() => {
+    if (user && user._id) {
+      fetchUser();
+    }
+    // eslint-disable-next-line
+ }, [params.id, user?._id]);
+
+    if (!user || !user._id || loading) return <Loader />;
     // Handle Profile Picture Update
     const handleUpdateProfilePic = async () => {
         try {
@@ -82,28 +84,30 @@ export const Profile = () => {
 
     return (
         <>
-            <div className="profile-container">
-                <div className="profile-card">
-                    <div className="profile-pic-container">
-                        <img className="profile-pic" src={userData.profilePicture || "https://source.unsplash.com/150x150/?person"} alt="Profile" />
+            <div className="modern-profile-container fade-in-up">
+                <div className="modern-profile-card">
+                    <div className="modern-profile-pic-container">
+                        <img className="modern-profile-pic" src={userData.profilePicture || "https://source.unsplash.com/150x150/?person"} alt="Profile" />
                         <input
                             type="text"
                             placeholder="Enter Image URL"
                             value={userData.profilePicture}
                             onChange={(e) => setUserData({ ...userData, profilePicture: e.target.value })}
+                            className="modern-profile-input"
                         />
-                        <button onClick={handleUpdateProfilePic}>Update Profile Picture</button>
+                        <button className="modern-btn" onClick={handleUpdateProfilePic}>Update Profile Picture</button>
                     </div>
-                    <h2>{userData.name}</h2>
-                    <p><strong>Email:</strong> {userData.email}</p>
-                    <p><strong>Role:</strong> {userData.userType}</p>
+                    <div className="modern-profile-info">
+                      <h2>{userData.name}</h2>
+                      <p><strong>Email:</strong> {userData.email}</p>
+                      <p><strong>Role:</strong> {userData.userType}</p>
+                    </div>
                 </div>
             </div>
-        
+            <div className="modern-profile-section-divider" />
         {userData.userType === "seller" && (
             <SellerProperties sellerId={user._id}/>
         )}
-        
         {userData.userType === "seller" && (
             <BuyerRequests sellerId={user._id}/>
         )}

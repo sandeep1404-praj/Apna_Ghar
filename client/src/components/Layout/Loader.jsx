@@ -1,12 +1,7 @@
-export const Loader = ()=>{
-    return(<>
-    <div className="loader-container">
-            <div className="loader">
-
-    <div className="bar">
-        <div className="ball"></div>
+export const Loader = () => {
+  return (
+    <div className="modern-loader-container">
+      <div className="modern-spinner" aria-label="Loading" />
     </div>
-    </div>
-    </div>
-    </>)
-}
+  );
+};

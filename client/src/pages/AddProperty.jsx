@@ -65,27 +65,30 @@ const AddProperty = () => {
       setLoading(false);
     }
   };
+  if (loading) return <Loader />;
   if (isPending) return <Loader />;
   return (
-    <div className="property-form">
-      <h2>Add Property</h2>
-      {error && <p className="error">{error}</p>}
-      {success && <p className="success">{success}</p>}
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="title" placeholder="Property Title" value={formData.title} onChange={handleChange} required />
-        <input type="text" name="description" placeholder="Description" value={formData.description} onChange={handleChange} required />
-        <input type="text" name="location" placeholder="Location" value={formData.location} onChange={handleChange} required />
-        <input type="number" name="price" placeholder="Price (₹)" value={formData.price} onChange={handleChange} required />
-        <select name="propertyType" value={formData.propertyType} onChange={handleChange} required>
-          <option value="">Select Property Type</option>
-          <option value="Flat">Flat</option>
-          <option value="House">House</option>
-          <option value="Villa">PG</option>
-          <option value="Villa">Other</option>
-        </select>
-        <input type="text" name="images" placeholder="Image URL" value={formData.images} onChange={handleChange} required />
-        <button type="submit" disabled={loading}>{loading ? "Adding..." : "Add Property"}</button>
-      </form>
+    <div className="modern-property-form-container fade-in-up">
+      <div className="modern-property-form-card">
+        <h2>Add Property</h2>
+        {error && <p className="error">{error}</p>}
+        {success && <p className="success">{success}</p>}
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="title" placeholder="Property Title" value={formData.title} onChange={handleChange} required className="modern-property-input" />
+          <input type="text" name="description" placeholder="Description" value={formData.description} onChange={handleChange} required className="modern-property-input" />
+          <input type="text" name="location" placeholder="Location" value={formData.location} onChange={handleChange} required className="modern-property-input" />
+          <input type="number" name="price" placeholder="Price (₹)" value={formData.price} onChange={handleChange} required className="modern-property-input" />
+          <select name="propertyType" value={formData.propertyType} onChange={handleChange} required className="modern-property-input">
+            <option value="">Select Property Type</option>
+            <option value="Flat">Flat</option>
+            <option value="House">House</option>
+            <option value="Villa">PG</option>
+            <option value="Villa">Other</option>
+          </select>
+          <input type="text" name="images" placeholder="Image URL" value={formData.images} onChange={handleChange} required className="modern-property-input" />
+          <button type="submit" disabled={loading} className="modern-btn" style={{marginTop:'1.1rem'}}>{loading ? "Adding..." : "Add Property"}</button>
+        </form>
+      </div>
     </div>
   );
 };

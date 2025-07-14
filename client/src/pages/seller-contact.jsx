@@ -27,12 +27,12 @@ export const BuyerRequests = () => {
 
   useEffect(() => {
     const fetchBuyerRequests = async () => {
+      setLoading(true);
       try {
         const response = await fetch(`https://apna-ghar-2.onrender.com/api/seller/buyer-requests/${user._id}`);
         const data = await response.json();
         if (response.ok) {
           setRequests(data);
-    
         } else {
           console.error("Error fetching requests:", data.message);
           toast.error("Message is Not Sended")
@@ -47,14 +47,14 @@ export const BuyerRequests = () => {
     if (user?._id) {
       fetchBuyerRequests();
     }
-  }, [user]);
+  }, [user?._id]);
+
+  if (loading) return <Loader />;
   if (isPending) return <Loader />;
   return (
     <div className="buyer-requests-container">
       <h2>Buyer Requests</h2>
-      {loading ? (
-         <Loader />
-      ) : requests.length === 0 ? (
+      {requests.length === 0 ? (
         <p>No buyer requests found.</p>
       ) : (
         <ul>

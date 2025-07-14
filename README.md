@@ -55,7 +55,7 @@ Make sure you have the following installed:
    bun run dev
    ```
 
-6. Open `http://localhost:3000` in your browser.
+6. Open `https://apna-ghar-2.onrender.com` in your browser.
 
 ## API Routes
 
